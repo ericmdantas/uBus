@@ -5,6 +5,7 @@ type event = {
   token: string,
   cb: Function,
   once: boolean,
+  del?: boolean
 }
 
 type destroyFn = () => void;
@@ -75,8 +76,7 @@ class Bus implements Messenger, Listener, Destroyer {
     if (typeof(token) === "string") {
         for (let i = 0, len = this._q.length; i < len; i++) {
           if (this._q[i].token === token) {
-            this._q.splice(i, 1);
-            i--;
+            this._q[i].del = true;
           }
         }
     }
@@ -85,12 +85,13 @@ class Bus implements Messenger, Listener, Destroyer {
         token.forEach((t) => {
           for (let i = 0, len = this._q.length; i < len; i++) {
             if (this._q[i].token === t) {
-              this._q.splice(i, 1);
-              i--;
+              this._q[i].del = true;
             }
           }
         });
     }
+
+    this._q = this._q.filter((item) => !item.del);
   }
 
   _genId():string {

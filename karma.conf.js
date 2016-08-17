@@ -7,8 +7,14 @@ module.exports = (config) => {
       'build/bus_test.js'
     ],
     exclude: [],
-    preprocessors: {},
-    reporters: ['dots'],
+    preprocessors: {
+      'build/bus.js': 'coverage'
+    },
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'unit_coverage/'
+    },
+    reporters: ['dots', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

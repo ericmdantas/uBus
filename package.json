@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "tsc",
     "build": "gulp build",
-    "test": "gulp unit_test"
+    "test": "npm run compile && gulp unit_test"
   },
   "repository": {
     "type": "git",

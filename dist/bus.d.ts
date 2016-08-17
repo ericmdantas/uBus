@@ -3,13 +3,14 @@ declare type event = {
     token: string;
     cb: Function;
     once: boolean;
+    del?: boolean;
 };
-declare type destroyCb = () => void;
+declare type destroyFn = () => void;
 interface Messenger {
     emit(token: string, info?: any): void;
 }
 interface Listener {
-    on(token: string, cb: Function): destroyCb;
+    on(token: string, cb: Function): destroyFn;
     once(token: string, cb: Function): void;
 }
 interface Destroyer {
@@ -19,7 +20,7 @@ declare class Bus implements Messenger, Listener, Destroyer {
     _q: event[];
     constructor();
     emit(token: string, info?: any): void;
-    on(token: string, cb: Function): destroyCb;
+    on(token: string, cb: Function): destroyFn;
     once(token: string, cb: Function): void;
     off(token: string | string[]): void;
     _genId(): string;
