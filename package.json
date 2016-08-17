@@ -1,0 +1,45 @@
+{
+  "name": "ubus",
+  "version": "0.0.1",
+  "description": "Micro message bus for javascript.",
+  "main": "dist/bus.min.js",
+  "scripts": {
+    "compile": "tsc",
+    "build": "gulp build",
+    "test": "gulp unit_test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericmdantas/uBus.git"
+  },
+  "keywords": [
+    "message-bus",
+    "javascript",
+    "client",
+    "small",
+    "simple",
+    "light"
+  ],
+  "author": "Eric Mendes Dantas",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2016"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/ericmdantas/uBus/issues"
+  },
+  "homepage": "https://github.com/ericmdantas/uBus#readme",
+  "devDependencies": {
+    "babel-register": "^6.11.6",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.6",
+    "gulp-uglify": "^2.0.0",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "typescript": "^2.0.0"
+  }
+}
