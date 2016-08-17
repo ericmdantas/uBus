@@ -8,7 +8,7 @@ Work in progress.
 
 #### on
 
-```js
+```ts
   bus.on(token:string, callback: Function): () => void
 ```
 
@@ -16,36 +16,36 @@ Work in progress.
   let bus = new Bus();
 
   bus.on('my-event', () => {
-    console.log('yo!'); // logs: 'yo!' every time this Bus instance emits 'my-event'
+    console.log('yo!'); // logs 'yo!' every time this Bus instance emits 'my-event'
   });
 
   bus.on('my-other-event', (info) => {
-    console.log(info); // logs: info every time this Bus instance emits 'my-other-event'
+    console.log(info); // logs info every time this Bus instance emits 'my-other-event'
   });
 ```
 
 #### once
 
-```js
+```ts
   bus.once(token:string, callback: Function):void
 ```
 
-```js
+```ts
   let bus = new Bus();
 
   bus.once('my-event', () => {
-    console.log('yo!'); // logs: 'yo!' only once per bus instance
+    console.log('yo!'); // logs 'yo!' only once per bus instance
   });
 
   bus.once('my-other-event', (info) => {
-    console.log(info); // logs: 'yo!' only once per bus instance
+    console.log(info); // logs 'yo!' only once per bus instance
   });
 ```
 
 
 #### emit
 
-```js
+```ts
   bus.emit(token:string, info?: any):void
 ```
 
@@ -53,11 +53,11 @@ Work in progress.
   let bus = new Bus();
 
   bus.on('my-event', () => {
-    console.log('yo!'); // logs: 'yo!'
+    console.log('yo!'); // logs 'yo!' when 'my-event' is called
   });
 
   bus.on('my-other-event', (info) => {
-    console.log(info); // logs: 'wtf'
+    console.log(info); // logs 'wtf' when 'my-other-event' is called
   });
 
   bus.emit('my-event');
@@ -66,7 +66,7 @@ Work in progress.
 
 #### off
 
-```js
+```ts
   bus.off(token: string | string[]):void
 ```
 
@@ -102,7 +102,7 @@ Work in progress.
 
 #### destroy function
 
-```js
+```ts
   let destroyFn = bus.on(token:string, cb: Function): () => void
 ```
 
@@ -110,21 +110,33 @@ Work in progress.
   let bus = new Bus();
 
   let _destroyMyEvent1 = bus.on('my-event', () => {
-    console.log('yo!'); // logs: 'yo!'
+    console.log('yo!'); // logs 'yo!' when 'my-event' is called
   });
 
   let _destroyMyEvent2 = bus.on('my-event', () => {
-    console.log('yo!'); // logs: 'yo!'
+    console.log('yo!'); // logs 'yo!' when 'my-event' is called
   });
 
   let _destroyMyOtherEvent1 = bus.on('my-other-event', (info) => {
-    console.log(info); // logs: 'wtf'
+    console.log(info); // logs 'wtf' when 'my-other-event' is called
   });
 
   let _destroyMyOtherEvent2 = bus.on('my-other-event', (info) => {
-    console.log(info); // logs: 'wtf'
+    console.log(info); // logs 'wtf' when 'my-other-event' is called
   });
+
+  bus.emit('my-event'); // triggers twice, because there are two listeners
+  bus.emit('my-event', 'wtf'); // triggers twice, because there are two listeners
 
   _destroyMyEvent1(); // only destroys the first 'my-event'
   _destroyMyOtherEvent1(); // only destroys the first 'my-other-event'
+
+  bus.emit('my-event'); // triggers once, because one of the listeners was destroyed
+  bus.emit('my-event', 'wtf'); // triggers once, because one of the listeners was destroyed
+
+  _destroyMyEvent2(); // destroy the second 'my-event'
+  _destroyMyOtherEvent2(); // destroy the second 'my-other-event'
+
+  bus.emit('my-event'); // triggers nothing, no one listening
+  bus.emit('my-event', 'wtf'); // triggers nothing, no one listening
 ```
