@@ -1,5 +1,7 @@
 # μBus
 
+[![Build Status](https://travis-ci.org/ericmdantas/uBus.svg?branch=master)](https://travis-ci.org/ericmdantas/uBus)
+
 Work in progress.
 
 ### API

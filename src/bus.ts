@@ -1,3 +1,5 @@
+// μBus
+
 type event = {
   _id: string,
   token: string,
@@ -5,22 +7,22 @@ type event = {
   once: boolean,
 }
 
-type destroyCb = () => void;
+type destroyFn = () => void;
 
-export interface Messenger {
+interface Messenger {
   emit(token:string, info?: any):void;
 }
 
-export interface Listener {
-  on(token: string, cb: Function): destroyCb;
+interface Listener {
+  on(token: string, cb: Function): destroyFn;
   once(token: string, cb: Function): void;
 }
 
-export interface EventDestroyer {
+interface Destroyer {
   off(token: string | string[]):void;
 }
 
-export class Bus implements Messenger, Listener, EventDestroyer {
+class Bus implements Messenger, Listener, Destroyer {
   _q: event[];
 
   constructor() {
@@ -40,7 +42,7 @@ export class Bus implements Messenger, Listener, EventDestroyer {
       }
   }
 
-  on(token:string, cb:Function): destroyCb {
+  on(token:string, cb:Function): destroyFn {
     let _id = this._genId();
 
     this._q.push({
@@ -91,9 +93,9 @@ export class Bus implements Messenger, Listener, EventDestroyer {
     }
   }
 
-  _genId() {
-    function s4() {
-      return ~~((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  _genId():string {
+    function s4():string {
+      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     }
 
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
