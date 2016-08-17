@@ -9,7 +9,7 @@ Work in progress.
 #### on
 
 ```js
-bus.on(token:string, callback: Function): () => void
+  bus.on(token:string, callback: Function): () => void
 ```
 
 ```js
@@ -27,7 +27,7 @@ bus.on(token:string, callback: Function): () => void
 #### once
 
 ```js
-bus.once(token:string, callback: Function):void
+  bus.once(token:string, callback: Function):void
 ```
 
 ```js
@@ -46,7 +46,7 @@ bus.once(token:string, callback: Function):void
 #### emit
 
 ```js
-bus.emit(token:string, info?: any):void
+  bus.emit(token:string, info?: any):void
 ```
 
 ```js
@@ -67,52 +67,64 @@ bus.emit(token:string, info?: any):void
 #### off
 
 ```js
-bus.off(token: string | string[]):void
+  bus.off(token: string | string[]):void
 ```
 
 ```js
   let bus = new Bus();
 
   bus.on('my-event', () => {
-    console.log('yo!'); // logs: 'yo!'
+    console.log('yo!'); // logs 'yo!' when 'my-event' is emitted
   });
 
   bus.on('my-other-event', (info) => {
-    console.log(info); // logs: 'wtf'
+    console.log(info); // logs 'wtf' when 'my-other-event' is emitted
   });
 
-  bus.emit('my-event');
-  bus.emit('my-other-event', 'wtf');
+
+  bus.emit('my-event'); // will trigger the event
+  bus.emit('my-other-event', 'wtf'); // will trigger the event
 
   bus.off('my-event');
   bus.off('my-other-event', 'wtf');
 
-  // or
-
+  /* or
   bus.off([
     'my-event',
     'my-other-event'
   ]);
+  */
+
+  bus.emit('my-event'); // won't trigger the event, nobody listening
+  bus.emit('my-other-event', 'wtf'); // won't trigger the event, nobody listening
 ```
 
 
 #### destroy function
 
 ```js
-let destroyFn = bus.on(token:string, cb: Function): () => void
+  let destroyFn = bus.on(token:string, cb: Function): () => void
 ```
 
 ```js
   let bus = new Bus();
 
-  let _destroyMyEvent = bus.on('my-event', () => {
+  let _destroyMyEvent1 = bus.on('my-event', () => {
     console.log('yo!'); // logs: 'yo!'
   });
 
-  let _destroyMyOtherEvent = bus.on('my-other-event', (info) => {
+  let _destroyMyEvent2 = bus.on('my-event', () => {
+    console.log('yo!'); // logs: 'yo!'
+  });
+
+  let _destroyMyOtherEvent1 = bus.on('my-other-event', (info) => {
     console.log(info); // logs: 'wtf'
   });
 
-  _destroyMyEvent();
-  _destroyMyOtherEvent();
+  let _destroyMyOtherEvent2 = bus.on('my-other-event', (info) => {
+    console.log(info); // logs: 'wtf'
+  });
+
+  _destroyMyEvent1(); // only destroys the first 'my-event'
+  _destroyMyOtherEvent1(); // only destroys the first 'my-other-event'
 ```

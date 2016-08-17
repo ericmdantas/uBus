@@ -80,6 +80,30 @@ describe('μBus', () => {
   });
 
   describe('on', () => {
+    it('should not call the onCb with - nothing emitted yet', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      _b.on('a', () => {
+        _called = true;
+      });
+
+      expect(_called).toBe(false);
+    });
+
+    it('should not call the onCb with - different token called', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      _b.on('a', () => {
+        _called = true;
+      });
+
+      _b.emit('a1');
+
+      expect(_called).toBe(false);
+    });
+
     it('should call the onCb with no info param', () => {
       let _b = new Bus();
       let _called = false;
@@ -151,6 +175,30 @@ describe('μBus', () => {
   });
 
   describe('once', () => {
+    it('should not call the onCb with - nothing emitted yet', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      _b.once('a', () => {
+        _called = true;
+      });
+
+      expect(_called).toBe(false);
+    });
+
+    it('should not call the onCb with - different token called', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      _b.once('a', () => {
+        _called = true;
+      });
+
+      _b.emit('a1');
+
+      expect(_called).toBe(false);
+    });
+
     it('should call the onCb with no info param - only once', () => {
       let _b = new Bus();
       let _calledCount = 0;

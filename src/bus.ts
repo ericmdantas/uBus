@@ -31,16 +31,16 @@ class Bus implements Messenger, Listener, Destroyer {
   }
 
   emit(token:string, info?:any):void {
-      for (let i = 0, len = this._q.length; i < len; i++) {
-          if (this._q[i].token === token) {
-              this._q[i].cb(info);
+    for (let i = 0, len = this._q.length; i < len; i++) {
+      if (this._q[i].token === token) {
+        this._q[i].cb(info);
 
-              if (this._q[i].once) {
-                this._q.splice(i, 1);
-                break;
-              }
-          }
+        if (this._q[i].once) {
+          this._q.splice(i, 1);
+          break;
+        }
       }
+    }
   }
 
   on(token:string, cb:Function): destroyFn {
@@ -51,7 +51,7 @@ class Bus implements Messenger, Listener, Destroyer {
       token: token,
       cb: cb,
       once: false,
-    })
+    });
 
     return () => {
       for (let i = 0, len = this._q.length; i < len; i++) {
@@ -82,13 +82,13 @@ class Bus implements Messenger, Listener, Destroyer {
     }
 
     if ((typeof(token) === "object") && !!token.length) {
-        token.forEach((t) => {
-          for (let i = 0, len = this._q.length; i < len; i++) {
-            if (this._q[i].token === t) {
-              this._q[i].del = true;
-            }
+      token.forEach((t) => {
+        for (let i = 0, len = this._q.length; i < len; i++) {
+          if (this._q[i].token === t) {
+            this._q[i].del = true;
           }
-        });
+        }
+      });
     }
 
     this._q = this._q.filter((item) => !item.del);
