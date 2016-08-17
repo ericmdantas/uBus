@@ -5,7 +5,7 @@
   "main": "dist/bus.min.js",
   "scripts": {
     "compile": "tsc",
-    "build": "gulp build",
+    "build": "npm run compile && gulp build",
     "test": "npm run compile && gulp unit_test"
   },
   "repository": {

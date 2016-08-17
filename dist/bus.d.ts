@@ -23,5 +23,6 @@ declare class Bus implements Messenger, Listener, Destroyer {
     on(token: string, cb: Function): destroyFn;
     once(token: string, cb: Function): void;
     off(token: string | string[]): void;
+    _s4(): string;
     _genId(): string;
 }

@@ -10,7 +10,11 @@
     },
     "exclude": [
         "node_modules",
-        "build",
-        "dist"
+        "!node_modules/@types/**",
+        "dist/**",
+        "build/**"
+    ],
+    "types": [
+      "jasmine"
     ]
 }

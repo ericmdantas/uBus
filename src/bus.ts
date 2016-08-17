@@ -94,11 +94,15 @@ class Bus implements Messenger, Listener, Destroyer {
     this._q = this._q.filter((item) => !item.del);
   }
 
-  _genId():string {
-    function s4():string {
-      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    }
+  _s4(): string {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  }
 
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  _genId():string {
+    return this._s4() + this._s4() + '-' +
+           this._s4() + '-' +
+           this._s4() + '-' +
+           this._s4() + '-' +
+           this._s4() + this._s4() + this._s4();
   }
 }
