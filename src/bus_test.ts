@@ -1,3 +1,5 @@
+import {Bus} from './bus';
+
 describe('μBus', () => {
   describe('creation', () => {
     it('should return a function', () => {

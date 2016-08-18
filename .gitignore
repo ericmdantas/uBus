@@ -1,3 +1,5 @@
 node_modules
 unit_coverage
 build
+
+*.log

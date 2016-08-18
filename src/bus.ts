@@ -1,6 +1,6 @@
 // μBus
 
-type event = {
+export type event = {
   _id: string,
   token: string,
   cb: Function,
@@ -8,22 +8,22 @@ type event = {
   del?: boolean
 }
 
-type destroyFn = () => void;
+export type destroyFn = () => void;
 
-interface Messenger {
+export interface Messenger {
   emit(token:string, info?: any):void;
 }
 
-interface Listener {
+export interface Listener {
   on(token: string, cb: Function): destroyFn;
   once(token: string, cb: Function): void;
 }
 
-interface Destroyer {
+export interface Destroyer {
   off(token: string | string[]):void;
 }
 
-class Bus implements Messenger, Listener, Destroyer {
+export class Bus implements Messenger, Listener, Destroyer {
   _q: event[];
 
   constructor() {

@@ -1,14 +1,15 @@
 module.exports = (config) => {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
     files: [
       'build/bus.js',
       'build/bus_test.js'
     ],
     exclude: [],
     preprocessors: {
-      'build/bus.js': 'coverage'
+      'build/bus.js': ['browserify', 'coverage'],
+      'build/bus_test.js': ['browserify']
     },
     coverageReporter: {
       type : 'lcov',
