@@ -22,6 +22,11 @@ module.exports = (config) => {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: true,
+    browserify: {
+      transform: [
+        'babelify'
+      ]
+    },
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
