@@ -1,7 +1,7 @@
 {
   "name": "ubus",
   "version": "0.0.1",
-  "description": "Micro message bus for javascript.",
+  "description": "Micro message bus for the browser.",
   "main": "dist/commonjs/bus.min.js",
   "scripts": {
     "compile": "tsc",
@@ -15,8 +15,12 @@
   "keywords": [
     "message-bus",
     "javascript",
+    "browser",
+    "micro",
     "client",
     "small",
+    "es2015",
+    "commonjs",
     "simple",
     "light"
   ],

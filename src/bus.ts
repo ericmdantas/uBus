@@ -82,7 +82,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     }
 
     if ((typeof(token) === "object") && !!token.length) {
-      token.forEach((t) => {
+      (token as string[]).forEach((t) => {
         for (let i = 0, len = this._q.length; i < len; i++) {
           if (this._q[i].token === t) {
             this._q[i].del = true;
