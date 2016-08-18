@@ -1,6 +1,6 @@
 // μBus
 
-export type event = {
+type event = {
   _id: string,
   token: string,
   cb: Function,
@@ -24,13 +24,13 @@ export interface Destroyer {
 }
 
 export class Bus implements Messenger, Listener, Destroyer {
-  _q: event[];
+  private _q: event[];
 
   constructor() {
     this._q = [];
   }
 
-  emit(token:string, info?:any):void {
+  public emit(token:string, info?:any):void {
     for (let i = 0, len = this._q.length; i < len; i++) {
       if (this._q[i].token === token) {
         this._q[i].cb(info);
@@ -43,7 +43,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     }
   }
 
-  on(token:string, cb:Function): destroyFn {
+  public on(token:string, cb:Function): destroyFn {
     let _id = this._genId();
 
     this._q.push({
@@ -63,7 +63,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     }
   }
 
-  once(token: string, cb: Function):void {
+  public once(token: string, cb: Function):void {
     this._q.push({
       _id: this._genId(),
       token: token,
@@ -72,7 +72,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     });
   }
 
-  off(token: string | string[]):void {
+  public off(token: string | string[]):void {
     if (typeof(token) === "string") {
         for (let i = 0, len = this._q.length; i < len; i++) {
           if (this._q[i].token === token) {
@@ -94,11 +94,11 @@ export class Bus implements Messenger, Listener, Destroyer {
     this._q = this._q.filter((item) => !item.del);
   }
 
-  _s4(): string {
+  private _s4(): string {
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   }
 
-  _genId():string {
+  private _genId():string {
     return this._s4() + this._s4() + '-' +
            this._s4() + '-' +
            this._s4() + '-' +

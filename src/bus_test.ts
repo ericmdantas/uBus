@@ -5,11 +5,6 @@ describe('μBus', () => {
     it('should return a function', () => {
       expect(typeof(Bus)).toBe('function');
     });
-
-    it('should create a new instance with an empty array in _q', () => {
-      let _b = new Bus();
-      expect(_b._q).toEqual([]);
-    });
   });
 
   describe('emit', () => {

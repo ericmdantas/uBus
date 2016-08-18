@@ -11,7 +11,8 @@ gulp.task('build', [
   'build-es2015',
   'build-systemjs',
   'build-amd',
-  'build-umd'
+  'build-umd',
+  'copy-declaration'
 ]);
 
 gulp.task('build-commonjs', () => {
@@ -89,6 +90,11 @@ gulp.task('build-amd', () => {
                suffix: '.min'
              }))
              .pipe(gulp.dest('dist/amd'));
+});
+
+gulp.task('copy-declaration', () => {
+  return gulp.src('build/bus.d.ts')
+             .pipe(gulp.dest('dist'));
 });
 
 gulp.task('unit_test', (done) => {

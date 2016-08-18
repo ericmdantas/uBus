@@ -3,6 +3,7 @@
         "module": "es2015",
         "outDir": "build",
         "target": "es6",
+        "declaration": true,
         "noImplicitAny": false,        
         "strictNullChecks": true
     },
