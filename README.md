@@ -14,12 +14,13 @@ $ npm i --save ubus
 ### What is this?
 
 This is a micro implementation of a message bus in javascript - only `740 bytes when gzipped`. It was created to be light, fast and intuitive.
+
 The API is minimal and straight forward. There's `one` class and `four` methods - nothing more, nothing less.
 
-You can use it anywhere javascript is part of the client, like: `angular`, `electron`, `aurelia`, `vue`... among many others.
+You can use it anywhere javascript is part of the client, like: `angular`, `electron`, `aurelia`, `vue`, etc.
 And integrate it with pretty much any building tool, like: `gulp`, `webpack`, etc.
 
-This package is also developed in Typescript, which helps a lot if your application also uses Typescript, because of all the typings and suchs.
+Also, there are `five` different `module loaders` for you to play with: `es2015`, `commonjs`, `systemjs`, `amd` and `umd`. Pick the one that fits your project and have fun!
 
 
 ### API
@@ -160,11 +161,11 @@ This package is also developed in Typescript, which helps a lot if your applicat
 ```
 
 
-### Inspiration
+### Inspired by
 
-- [socket.io](https://github.com/socketio/socket.io);
-- [angular (1.x)](https://github.com/angular/angular.js);
-- [minibus](https://github.com/axelpale/minibus).
+- [socket.io](https://github.com/socketio/socket.io)'s simple API;
+- [angular (1.x)](https://github.com/angular/angular.js)'s implementation `$emit/$broadcast` and `$on`;
+- [minibus](https://github.com/axelpale/minibus)'s compact API.
 
 
 ### LICENSE

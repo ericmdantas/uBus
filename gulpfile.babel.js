@@ -8,7 +8,10 @@ import {Server as Karma} from 'karma';
 
 gulp.task('build', [
   'build-commonjs',
-  'build-es2015'
+  'build-es2015',
+  'build-systemjs',
+  'build-amd',
+  'build-umd'
 ]);
 
 gulp.task('build-commonjs', () => {
@@ -32,6 +35,60 @@ gulp.task('build-es2015', () => {
                suffix: '.min'
              }))
              .pipe(gulp.dest('dist/es2015'));
+});
+
+gulp.task('build-systemjs', () => {
+  return gulp.src('build/bus.js')
+             .pipe(babel({
+               presets: [
+                 [
+                   'es2015', {
+                     modules: 'systemjs'
+                   }
+                 ]
+               ]
+             }))
+             .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/systemjs'));
+});
+
+gulp.task('build-umd', () => {
+  return gulp.src('build/bus.js')
+             .pipe(babel({
+               presets: [
+                 [
+                   'es2015', {
+                     modules: 'umd'
+                   }
+                 ]
+               ]
+             }))
+             .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/umd'));
+});
+
+gulp.task('build-amd', () => {
+  return gulp.src('build/bus.js')
+             .pipe(babel({
+               presets: [
+                 [
+                   'es2015', {
+                     modules: 'amd'
+                   }
+                 ]
+               ]
+             }))
+             .pipe(uglify())
+             .pipe(rename({
+               suffix: '.min'
+             }))
+             .pipe(gulp.dest('dist/amd'));
 });
 
 gulp.task('unit_test', (done) => {
