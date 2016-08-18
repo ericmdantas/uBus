@@ -1,0 +1,10 @@
+src
+node_modules
+unit_coverage
+build
+
+.gitignore
+.travis.yml
+gulpfile.babel.js
+karma.conf.js
+tsconfig.json
