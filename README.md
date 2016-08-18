@@ -160,6 +160,10 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
   bus.emit('my-event', 'wtf'); // triggers nothing, no one listening
 ```
 
+### Wiki
+
+For more info on how to integrate with existing projects, frameworks, take a look at the [wiki](https://github.com/ericmdantas/uBus/wiki).
+
 
 ### Inspired by
 
