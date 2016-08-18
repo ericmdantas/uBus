@@ -2,6 +2,14 @@
 
 [![Build Status](https://travis-ci.org/ericmdantas/uBus.svg?branch=master)](https://travis-ci.org/ericmdantas/uBus)
 
+
+### Install
+
+```shell
+$ npm i --save ubus
+```
+
+
 ### What is this?
 
 This is a micro implementation of a message bus in javascript - only `740 bytes when gzipped`. It was created to be light, fast and intuitive.
