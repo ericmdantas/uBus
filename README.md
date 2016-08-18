@@ -164,7 +164,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 ### Inspired by
 
 - [socket.io](https://github.com/socketio/socket.io)'s simple API;
-- [angular (1.x)](https://github.com/angular/angular.js)'s implementation `$emit/$broadcast` and `$on`;
+- [angular (1.x)](https://github.com/angular/angular.js)'s implementation of `$emit/$broadcast` and `$on`;
 - [minibus](https://github.com/axelpale/minibus)'s compact API.
 
 
