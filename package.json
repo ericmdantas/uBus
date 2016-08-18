@@ -1,13 +1,13 @@
 {
   "name": "ubus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Micro message bus for the browser.",
   "main": "dist/commonjs/bus.min.js",
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && gulp build",
     "test": "npm run compile && gulp unit_test",
-	"prepublish": "npm t"
+    "prepublish": "npm t"
   },
   "repository": {
     "type": "git",
