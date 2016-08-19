@@ -169,6 +169,21 @@ describe('μBus', () => {
       expect(_calledInfo).toBe(_calledWith);
       expect(_calledCount).toBe(5);
     });
+
+    it('should pass the function around', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      let _fn = () => _called = true;
+
+      _b.on('call-fn', (fn) => {
+        fn();
+      });
+
+      _b.emit('call-fn', _fn);
+
+      expect(_called).toBe(true);
+    })
   });
 
   describe('once', () => {
@@ -265,6 +280,21 @@ describe('μBus', () => {
       expect(_sub1).toBe(1);
       expect(_sub2).toBe(0);
       expect(_sub3).toBe(0);
+    })
+
+    it('should pass the function around', () => {
+      let _b = new Bus();
+      let _called = false;
+
+      let _fn = () => _called = true;
+
+      _b.once('call-fn', (fn) => {
+        fn();
+      });
+
+      _b.emit('call-fn', _fn);
+
+      expect(_called).toBe(true);
     })
   });
 
