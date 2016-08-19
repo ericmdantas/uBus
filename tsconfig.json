@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "module": "es2015",
-        "outDir": "build",
+        "moduleResolution": "node",
+        "outDir": "build",        
         "target": "es6",
         "declaration": true,
         "noImplicitAny": false,        
