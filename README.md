@@ -28,7 +28,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 #### on
 
 ```ts
-  bus.on(token:string, callback: Function): () => void
+  bus.on(token: string, callback: Function): () => void
 ```
 
 ```js
@@ -46,7 +46,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 #### once
 
 ```ts
-  bus.once(token:string, callback: Function):void
+  bus.once(token: string, callback: Function):void
 ```
 
 ```ts
@@ -65,7 +65,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 #### emit
 
 ```ts
-  bus.emit(token:string, info?: any):void
+  bus.emit(token: string, info?: any):void
 ```
 
 ```js
@@ -122,7 +122,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 #### destroy function
 
 ```ts
-  let destroyFn = bus.on(token:string, cb: Function): () => void
+  let destroyFn = bus.on(token: string, cb: Function): () => void
 ```
 
 ```js
