@@ -3,20 +3,38 @@ const {Bus} = require('../dist/commonjs/bus.min');
 
 let suite = new Benchmark.Suite;
 let bench = new Benchmark();
-let bus1 = new Bus();
-let bus2 = new Bus();
+let bus = new Bus();
 
 suite.add('on', function() {
-  bus1.on('yo1!', () => {});
+  let _fn = bus.on('yo1!', () => {});
+
+  _fn();
 })
 .add('once', function() {
-  bus2.on('yo2!', () => {});
+  bus.once('yo1!', () => {});
+})
+.add('off - single', function() {
+  bus.on('yo1!', () => {});
+  bus.off('yo1!');
+})
+.add('off - array', function() {
+  bus.on('yo1!', () => {});
+  bus.off(['yo1!']);
+})
+.add('emit - on', function() {
+  bus.on('yo1!', () => {});
+  bus.emit('yo1!');
+})
+.add('emit - once', function() {
+  bus.once('yo1!', () => {});
+  bus.emit('yo1!');
+})
+.add('emit - params', function() {
+  bus.once('yo1!', (info) => {});
+  bus.emit('yo1!', {a: true});
 })
 .on('cycle', function(event) {
   console.log(String(event.target));
-})
-.on('complete', function() {
-  console.log('Fastest is: ' + this.filter('fastest').map('name'));
 })
 .run({ 
   async: true,
