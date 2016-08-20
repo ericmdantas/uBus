@@ -29,8 +29,12 @@ suite.add('on', function() {
   bus.once('yo1!', () => {});
   bus.emit('yo1!');
 })
-.add('emit - params', function() {
+.add('emit - once - params', function() {
   bus.once('yo1!', (info) => {});
+  bus.emit('yo1!', {a: true});
+})
+.add('emit - on - params', function() {
+  bus.on('yo1!', (info) => {});
   bus.emit('yo1!', {a: true});
 })
 .on('cycle', function(event) {

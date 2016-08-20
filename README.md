@@ -162,7 +162,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 
 ### Wiki
 
-For more info on how to integrate with existing projects, frameworks, take a look at the [wiki](https://github.com/ericmdantas/uBus/wiki).
+For more info on how to integrate with existing projects, FAQ, Troubleshooting and other stuff, take a look at the [wiki](https://github.com/ericmdantas/uBus/wiki).
 
 
 ### Inspired by
