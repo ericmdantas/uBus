@@ -1,7 +1,7 @@
 # μBus
 
 [![Build Status](https://travis-ci.org/ericmdantas/uBus.svg?branch=master)](https://travis-ci.org/ericmdantas/uBus)
-[![npm version](https://badge.fury.io/js/xtorage.svg)](https://badge.fury.io/js/xtorage)
+[![npm version](https://badge.fury.io/js/ubus.svg)](https://badge.fury.io/js/ubus)
 
 
 ### Install
