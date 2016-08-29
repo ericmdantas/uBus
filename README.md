@@ -13,14 +13,21 @@ $ npm i --save ubus
 
 ### What is this?
 
-This is a micro implementation of a message bus in javascript - only `740 bytes when gzipped`. It was created to be light, fast and intuitive.
+μBus, as the name suggests, is a micro implementation of a light, fast and intuitive message bus/event emitter in javascript - it's only `740 bytes when gzipped`.
 
 The API is minimal and straight forward. There's `one` class and `four` methods - nothing more, nothing less.
 
-You can use it anywhere javascript is part of the client, like: `angular`, `electron`, `aurelia`, `vue`, etc.
-And integrate it with pretty much any building tool, like: `gulp`, `webpack`, etc.
+You can use it anywhere javascript is being used, both server and client.
 
-Also, there are `five` different `module loaders` for you to play with: `es2015`, `commonjs`, `systemjs`, `amd` and `umd`. Pick the one that fits your project and have fun!
+Given there are a lot of different projects out there, `μBus` has `five` different `module loaders` for you to play with:
+
+- `es2015`;
+- `commonjs`; 
+- `systemjs`;
+- `amd`;
+- `umd`. 
+
+Pick the one that fits your project and have fun!
 
 
 ### API
@@ -49,7 +56,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
   bus.once(token: string, callback: Function):void
 ```
 
-```ts
+```js
   let bus = new Bus();
 
   bus.once('my-event', () => {
@@ -105,7 +112,7 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
   bus.emit('my-other-event', 'wtf'); // will trigger the event
 
   bus.off('my-event');
-  bus.off('my-other-event', 'wtf');
+  bus.off('my-other-event');
 
   /* or
   bus.off([
@@ -128,33 +135,19 @@ Also, there are `five` different `module loaders` for you to play with: `es2015`
 ```js
   let bus = new Bus();
 
-  let _destroyMyEvent1 = bus.on('my-event', () => {
+  let _destroyMyEvent = bus.on('my-event', () => {
     console.log('yo!'); // logs 'yo!' when 'my-event' is called
   });
 
-  let _destroyMyEvent2 = bus.on('my-event', () => {
-    console.log('yo!'); // logs 'yo!' when 'my-event' is called
-  });
-
-  let _destroyMyOtherEvent1 = bus.on('my-other-event', (info) => {
+  let _destroyMyOtherEvent = bus.on('my-other-event', (info) => {
     console.log(info); // logs 'wtf' when 'my-other-event' is called
   });
 
-  let _destroyMyOtherEvent2 = bus.on('my-other-event', (info) => {
-    console.log(info); // logs 'wtf' when 'my-other-event' is called
-  });
+  bus.emit('my-event'); // triggers the event
+  bus.emit('my-event-other-event', 'wtf'); // triggers the event
 
-  bus.emit('my-event'); // triggers twice, because there are two listeners
-  bus.emit('my-event', 'wtf'); // triggers twice, because there are two listeners
-
-  _destroyMyEvent1(); // only destroys the first 'my-event'
-  _destroyMyOtherEvent1(); // only destroys the first 'my-other-event'
-
-  bus.emit('my-event'); // triggers once, because one of the listeners was destroyed
-  bus.emit('my-event', 'wtf'); // triggers once, because one of the listeners was destroyed
-
-  _destroyMyEvent2(); // destroy the second 'my-event'
-  _destroyMyOtherEvent2(); // destroy the second 'my-other-event'
+  _destroyMyEvent(); // destroys 'my-event'
+  _destroyMyOtherEvent(); // destroys 'my-other-event'
 
   bus.emit('my-event'); // triggers nothing, no one listening
   bus.emit('my-event', 'wtf'); // triggers nothing, no one listening
@@ -167,6 +160,7 @@ For more information on how to integrate with existing projects, Benchmarks, FAQ
 
 ### Inspired by
 
+- [Node.js](https://github.com/nodejs/node)'s EventEmitter.
 - [socket.io](https://github.com/socketio/socket.io)'s simple API;
 - [angular (1.x)](https://github.com/angular/angular.js)'s implementation of `$emit/$broadcast` and `$on`;
 - [minibus](https://github.com/axelpale/minibus)'s compact API.
