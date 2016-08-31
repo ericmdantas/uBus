@@ -83,11 +83,11 @@ Pick the one that fits your project and have fun!
   });
 
   bus.on('my-other-event', (info) => {
-    console.log(info); // logs 'wtf' when 'my-other-event' is called
+    console.log(info); // logs { yo: true } when 'my-other-event' is called
   });
 
   bus.emit('my-event');
-  bus.emit('my-other-event', 'wtf');
+  bus.emit('my-other-event', { yo: true });
 ```
 
 #### off
@@ -104,12 +104,12 @@ Pick the one that fits your project and have fun!
   });
 
   bus.on('my-other-event', (info) => {
-    console.log(info); // logs 'wtf' when 'my-other-event' is emitted
+    console.log(info); // logs { yo: true } when 'my-other-event' is emitted
   });
 
 
   bus.emit('my-event'); // will trigger the event
-  bus.emit('my-other-event', 'wtf'); // will trigger the event
+  bus.emit('my-other-event', { yo: true }); // will trigger the event
 
   bus.off('my-event');
   bus.off('my-other-event');
@@ -122,7 +122,7 @@ Pick the one that fits your project and have fun!
   */
 
   bus.emit('my-event'); // won't trigger the event, nobody listening
-  bus.emit('my-other-event', 'wtf'); // won't trigger the event, nobody listening
+  bus.emit('my-other-event', { yo: true }); // won't trigger the event, nobody listening
 ```
 
 
@@ -140,17 +140,17 @@ Pick the one that fits your project and have fun!
   });
 
   let _destroyMyOtherEvent = bus.on('my-other-event', (info) => {
-    console.log(info); // logs 'wtf' when 'my-other-event' is called
+    console.log(info); // logs { yo: true } when 'my-other-event' is called
   });
 
   bus.emit('my-event'); // triggers the event
-  bus.emit('my-event-other-event', 'wtf'); // triggers the event
+  bus.emit('my-other-event', { yo: true }); // triggers the event
 
   _destroyMyEvent(); // destroys 'my-event'
   _destroyMyOtherEvent(); // destroys 'my-other-event'
 
   bus.emit('my-event'); // triggers nothing, no one listening
-  bus.emit('my-event', 'wtf'); // triggers nothing, no one listening
+  bus.emit('my-other-event', { yo: true }); // triggers nothing, no one listening
 ```
 
 ### Wiki
