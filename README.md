@@ -13,7 +13,7 @@ $ npm i --save ubus
 
 ### What is this?
 
-μBus, as the name suggests, is a micro implementation of a light, fast and intuitive message bus/event emitter in javascript - it's only `740 bytes when gzipped`.
+μBus, as the name suggests, is a micro implementation of a light, fast and intuitive message bus/event emitter in javascript - it's only `380 bytes when gzipped` (es2015 module).
 
 The API is minimal and straight forward. There's `one` class and `four` methods - nothing more, nothing less.
 

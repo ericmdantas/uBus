@@ -1,6 +1,7 @@
 import gulp from 'gulp';
 import tsc from 'gulp-typescript';
 import uglify from 'gulp-uglify';
+import babelUglify from 'gulp-babel-minify';
 import browserify from 'gulp-uglify';
 import babel from 'gulp-babel';
 import rename from 'gulp-rename';
@@ -31,7 +32,7 @@ gulp.task('build-commonjs', () => {
 
 gulp.task('build-es2015', () => {
   return gulp.src('build/bus.js')
-             //.pipe(uglify())
+             .pipe(babelUglify())
              .pipe(rename({
                suffix: '.min'
              }))
@@ -76,6 +77,7 @@ gulp.task('build-umd', () => {
 
 gulp.task('build-amd', () => {
   return gulp.src('build/bus.js')
+             .pipe(babelUglify())
              .pipe(babel({
                presets: [
                  [
