@@ -45,6 +45,7 @@
     "babel-preset-es2016": "^6.11.3",
     "babel-register": "^6.11.6",
     "babelify": "^7.3.0",
+    "benchmark": "^2.1.1",
     "browserify": "^13.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
@@ -61,7 +62,5 @@
     "karma-jasmine": "^1.0.2",
     "typescript": "^2.0.0"
   },
-  "dependencies": {
-    "benchmark": "^2.1.1"
-  }
+  "dependencies": {}
 }
