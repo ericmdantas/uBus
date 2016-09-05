@@ -15,12 +15,15 @@
     "url": "git+https://github.com/ericmdantas/uBus.git"
   },
   "keywords": [
-    "message-bus",
+    "message",
+    "bus",
+    "event-emitter",
+    "event",
     "javascript",
     "browser",
     "micro",
-    "client",
     "small",
+    "client",
     "es2015",
     "commonjs",
     "simple",
