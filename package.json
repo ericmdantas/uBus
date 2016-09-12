@@ -2,7 +2,7 @@
   "name": "ubus",
   "version": "0.0.14",
   "description": "Micro message bus for the browser.",
-  "main": "dist/commonjs/bus.min.js",
+  "main": "dist/es2015/bus.min.js",
   "scripts": {
     "compile": "tsc",
     "build": "npm run compile && gulp build",
