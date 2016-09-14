@@ -31,6 +31,10 @@ export class Bus implements Messenger, Listener, Destroyer {
   }
 
   public emit(token: string, info?: any):void {
+    if (!token) {
+      throw new TypeError(this._tokenNotInformedMessage('emit'));
+    }
+
     for (let i = 0, len = this._q.length; i < len; i++) {
       if (this._q[i].token === token) {
         this._q[i].cb(info);
@@ -44,6 +48,10 @@ export class Bus implements Messenger, Listener, Destroyer {
   }
 
   public on(token: string, cb: Function):destroyFn {
+    if (!token) {
+      throw new TypeError(this._tokenNotInformedMessage('on'));
+    }
+
     let _id = this._genId();
 
     this._q.push({
@@ -64,6 +72,10 @@ export class Bus implements Messenger, Listener, Destroyer {
   }
 
   public once(token: string, cb: Function):void {
+    if (!token) {
+      throw new TypeError(this._tokenNotInformedMessage('once'));
+    }
+
     this._q.push({
       _id: this._genId(),
       token: token,
@@ -92,6 +104,10 @@ export class Bus implements Messenger, Listener, Destroyer {
     }
 
     this._q = this._q.filter((item) => !item.del);
+  }
+
+  _tokenNotInformedMessage(method:string):string {
+    return `[${method}] - Token not informed.`;
   }
 
   private _s4():string {

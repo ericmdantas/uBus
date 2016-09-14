@@ -13,13 +13,13 @@ $ npm i --save ubus
 
 ### What is this?
 
-μBus (micro bus) is a micro implementation of a message bus/event emitter in javascript. It was created to be light, fast and intuitive - it's only `380 bytes when gzipped` *(es2015 module)*.
+μBus (micro bus) is a micro implementation of a message bus/event emitter in javascript. It was created to be light, fast and intuitive - it's less than `500 bytes` when gzipped *(es2015 module)*.
 
 The API is minimal and straight forward. There's `one` class and `four` methods - nothing more, nothing less.
 
 You can use it anywhere javascript is being used, both server and client side.
 
-Given there are a lot of different projects out there, `μBus` has `five` different `module loaders` for you to play with:
+Also, given there are a lot of different projects out there, `μBus` has `five` different `module loaders` for you to play with:
 
 - `es2015`;
 - `commonjs`; 

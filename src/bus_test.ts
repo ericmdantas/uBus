@@ -8,6 +8,14 @@ describe('μBus', () => {
   });
 
   describe('emit', () => {
+    it('should throw error when the token is empty', () => {
+      let _b = new Bus();
+      
+      expect(() => {
+        _b.emit('');
+      }).toThrow(new TypeError('[emit] - Token not informed.'));
+    });
+
     it('should call the onCb with no info param - different tokens', () => {
       let _b = new Bus();
       let _called = false;
@@ -77,6 +85,14 @@ describe('μBus', () => {
   });
 
   describe('on', () => {
+    it('should throw error when the token is empty', () => {
+      let _b = new Bus();
+      
+      expect(() => {
+        _b.on('', () => {});
+      }).toThrow(new TypeError('[on] - Token not informed.'));
+    });
+
     it('should not call the onCb with - nothing emitted yet', () => {
       let _b = new Bus();
       let _called = false;
@@ -187,6 +203,14 @@ describe('μBus', () => {
   });
 
   describe('once', () => {
+    it('should throw error when the token is empty', () => {
+      let _b = new Bus();
+      
+      expect(() => {
+        _b.once('', () => {});
+      }).toThrow(new TypeError('[once] - Token not informed.'));
+    });
+
     it('should not call the onCb with - nothing emitted yet', () => {
       let _b = new Bus();
       let _called = false;
