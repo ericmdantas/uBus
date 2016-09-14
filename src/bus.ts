@@ -106,7 +106,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     this._q = this._q.filter((item) => !item.del);
   }
 
-  _tokenNotInformedMessage(method:string):string {
+  private _tokenNotInformedMessage(method:string):string {
     return `[${method}] - Token not informed.`;
   }
 
