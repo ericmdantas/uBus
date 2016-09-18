@@ -5,7 +5,7 @@ type event = {
   token: string,
   cb: Function,
   once: boolean,
-  del?: boolean
+  del: boolean
 }
 
 export type destroyFn = () => void;
@@ -59,6 +59,7 @@ export class Bus implements Messenger, Listener, Destroyer {
       token: token,
       cb: cb,
       once: false,
+      del: false
     });
 
     return () => {
@@ -80,7 +81,8 @@ export class Bus implements Messenger, Listener, Destroyer {
       _id: this._genId(),
       token: token,
       cb: cb,
-      once: true
+      once: true,
+      del: false
     });
   }
 
