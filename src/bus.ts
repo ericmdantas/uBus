@@ -32,7 +32,7 @@ export class Bus implements Messenger, Listener, Destroyer {
 
   public emit(token: string, info?: any):void {
     if (!token) {
-      throw new TypeError(this._tokenNotInformedMessage('emit'));
+      throw new TypeError(this._invalidTokenMessage('emit'));
     }
 
     for (let i = 0, len = this._q.length; i < len; i++) {
@@ -49,7 +49,7 @@ export class Bus implements Messenger, Listener, Destroyer {
 
   public on(token: string, cb: Function):destroyFn {
     if (!token) {
-      throw new TypeError(this._tokenNotInformedMessage('on'));
+      throw new TypeError(this._invalidTokenMessage('on'));
     }
 
     let _id = this._genId();
@@ -74,7 +74,7 @@ export class Bus implements Messenger, Listener, Destroyer {
 
   public once(token: string, cb: Function):void {
     if (!token) {
-      throw new TypeError(this._tokenNotInformedMessage('once'));
+      throw new TypeError(this._invalidTokenMessage('once'));
     }
 
     this._q.push({
@@ -108,7 +108,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     this._q = this._q.filter((item) => !item.del);
   }
 
-  private _tokenNotInformedMessage(method:string):string {
+  private _invalidTokenMessage(method:string):string {
     return `[${method}] - Token not informed.`;
   }
 
@@ -118,9 +118,9 @@ export class Bus implements Messenger, Listener, Destroyer {
 
   private _genId():string {
     return this._s4() + this._s4() + '-' +
-           this._s4() + '-' +
-           this._s4() + '-' +
-           this._s4() + '-' +
+           this._s4() +              '-' +
+           this._s4() +              '-' +
+           this._s4() +              '-' +
            this._s4() + this._s4() + this._s4();
   }
 }

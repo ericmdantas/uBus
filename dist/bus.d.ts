@@ -16,7 +16,7 @@ export declare class Bus implements Messenger, Listener, Destroyer {
     on(token: string, cb: Function): destroyFn;
     once(token: string, cb: Function): void;
     off(token: string | string[]): void;
-    private _tokenNotInformedMessage(method);
+    private _invalidTokenMessage(method);
     private _s4();
     private _genId();
 }
