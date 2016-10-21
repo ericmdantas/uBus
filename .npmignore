@@ -1,7 +1,8 @@
 src
+build
+bench
 node_modules
 unit_coverage
-build
 
 .gitignore
 .travis.yml
