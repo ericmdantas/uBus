@@ -100,9 +100,8 @@ gulp.task('copy-declaration', () => {
 });
 
 gulp.task('unit_test', (done) => {
-  let _server = new Karma({
-    configFile: __dirname + '/karma.conf.js'
-  }, done);
-
-  return _server.start();
+  return new Karma({
+      configFile: __dirname + '/karma.conf.js'
+    }, done)
+    .start();
 });
