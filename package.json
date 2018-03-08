@@ -55,7 +55,7 @@
     "gulp-babel-minify": "^0.1.12",
     "gulp-browserify": "^0.5.1",
     "gulp-rename": "^1.2.2",
-    "gulp-typescript": "^2.13.6",
+    "gulp-typescript": "^4.0.1",
     "gulp-uglify": "^2.0.0",
     "jasmine-core": "^2.4.1",
     "karma": "^1.2.0",
@@ -63,7 +63,7 @@
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.0.2",
-    "typescript": "^2.1.5"
+    "typescript": "^2.7.2"
   },
   "dependencies": {}
 }

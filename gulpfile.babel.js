@@ -102,6 +102,5 @@ gulp.task('copy-declaration', () => {
 gulp.task('unit_test', (done) => {
   return new Karma({
       configFile: __dirname + '/karma.conf.js'
-    }, done)
-    .start();
+    }, (exitCode) => done(exitCode)).start();
 });
