@@ -20,7 +20,7 @@ gulp.task('build-commonjs', () => {
   return gulp.src('build/bus.js')
              .pipe(babel({
                presets: [
-                 'es2015'
+                 'env'
                ]
              }))
              .pipe(uglify())
@@ -44,7 +44,7 @@ gulp.task('build-systemjs', () => {
              .pipe(babel({
                presets: [
                  [
-                   'es2015', {
+                   'env', {
                      modules: 'systemjs'
                    }
                  ]
@@ -62,7 +62,7 @@ gulp.task('build-umd', () => {
              .pipe(babel({
                presets: [
                  [
-                   'es2015', {
+                   'env', {
                      modules: 'umd'
                    }
                  ]
@@ -81,7 +81,7 @@ gulp.task('build-amd', () => {
              .pipe(babel({
                presets: [
                  [
-                   'es2015', {
+                   'env', {
                      modules: 'amd'
                    }
                  ]
