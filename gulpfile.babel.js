@@ -1,22 +1,13 @@
-import gulp from 'gulp';
-import tsc from 'gulp-typescript';
-import uglify from 'gulp-uglify';
-import babelUglify from 'gulp-babel-minify';
-import browserify from 'gulp-uglify';
-import babel from 'gulp-babel';
-import rename from 'gulp-rename';
-import {Server as Karma} from 'karma';
+import gulp from 'gulp'
+import tsc from 'gulp-typescript'
+import uglify from 'gulp-uglify'
+import babelUglify from 'gulp-babel-minify'
+import browserify from 'gulp-uglify'
+import babel from 'gulp-babel'
+import rename from 'gulp-rename'
+import {Server as Karma} from 'karma'
 
-gulp.task('build', [
-  'build-commonjs',
-  'build-es2015',
-  'build-systemjs',
-  'build-amd',
-  'build-umd',
-  'copy-declaration'
-]);
-
-gulp.task('build-commonjs', () => {
+gulp.task('build-commonjs', (done) => {
   return gulp.src('build/bus.js')
              .pipe(babel({
                presets: [
@@ -27,19 +18,21 @@ gulp.task('build-commonjs', () => {
              .pipe(rename({
                suffix: '.min'
              }))
-             .pipe(gulp.dest('dist/commonjs'));
-});
+             .pipe(gulp.dest('dist/commonjs'))
+             .on('end', () => done())
+})
 
-gulp.task('build-es2015', () => {
+gulp.task('build-es2015', (done) => {
   return gulp.src('build/bus.js')
              .pipe(babelUglify())
              .pipe(rename({
                suffix: '.min'
              }))
-             .pipe(gulp.dest('dist/es2015'));
-});
+             .pipe(gulp.dest('dist/es2015'))
+             .on('end', () => done())
+})
 
-gulp.task('build-systemjs', () => {
+gulp.task('build-systemjs', (done) => {
   return gulp.src('build/bus.js')
              .pipe(babel({
                presets: [
@@ -54,10 +47,11 @@ gulp.task('build-systemjs', () => {
              .pipe(rename({
                suffix: '.min'
              }))
-             .pipe(gulp.dest('dist/systemjs'));
-});
+             .pipe(gulp.dest('dist/systemjs'))
+             .on('end', () => done())
+})
 
-gulp.task('build-umd', () => {
+gulp.task('build-umd', (done) => {
   return gulp.src('build/bus.js')
              .pipe(babel({
                presets: [
@@ -72,10 +66,11 @@ gulp.task('build-umd', () => {
              .pipe(rename({
                suffix: '.min'
              }))
-             .pipe(gulp.dest('dist/umd'));
-});
+             .pipe(gulp.dest('dist/umd'))
+             .on('end', () => done())
+})
 
-gulp.task('build-amd', () => {
+gulp.task('build-amd', (done) => {
   return gulp.src('build/bus.js')
              .pipe(babelUglify())
              .pipe(babel({
@@ -91,16 +86,28 @@ gulp.task('build-amd', () => {
              .pipe(rename({
                suffix: '.min'
              }))
-             .pipe(gulp.dest('dist/amd'));
-});
+             .pipe(gulp.dest('dist/amd'))
+             .on('end', () => done())
+})
 
-gulp.task('copy-declaration', () => {
+gulp.task('copy-declaration', (done) => {
   return gulp.src('build/bus.d.ts')
-             .pipe(gulp.dest('dist'));
-});
+             .pipe(gulp.dest('dist'))
+             .on('end', () => done())
+})
 
 gulp.task('unit_test', (done) => {
   return new Karma({
       configFile: __dirname + '/karma.conf.js'
-    }, (exitCode) => done(exitCode)).start();
-});
+    }, (exitCode) => done(exitCode)).start()
+})
+
+gulp.task('build', gulp.series(
+    'build-commonjs',
+    'build-es2015',
+    'build-systemjs',
+    'build-amd',
+    'build-umd',
+    'copy-declaration'
+  )
+)
