@@ -1,6 +1,6 @@
 {
   "name": "ubus",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Micro message bus for the browser.",
   "main": "dist/es2015/bus.min.js",
   "scripts": {
