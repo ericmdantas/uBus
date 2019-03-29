@@ -47,7 +47,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     }
   }
 
-  public on(token: string, cb: Function):destroyFn {
+  public on(token: string, cb: (info?:any) => void):destroyFn {
     if (!token) {
       throw new TypeError(this._invalidTokenMessage('on'));
     }
@@ -112,15 +112,10 @@ export class Bus implements Messenger, Listener, Destroyer {
     return `[${method}] - Token not informed.`;
   }
 
-  private _s4():string {
-    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  }
-
   private _genId():string {
-    return this._s4() + this._s4() + '-' +
-           this._s4() +              '-' +
-           this._s4() +              '-' +
-           this._s4() +              '-' +
-           this._s4() + this._s4() + this._s4();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 }

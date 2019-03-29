@@ -39,6 +39,7 @@ Pick the one that fits your project and have fun!
 ```
 
 ```js
+  const {Bus} = require('ubus');
   let bus = new Bus();
 
   bus.on('my-event', () => {
@@ -57,6 +58,7 @@ Pick the one that fits your project and have fun!
 ```
 
 ```js
+  const {Bus} = require('ubus');
   let bus = new Bus();
 
   bus.once('my-event', () => {
@@ -76,6 +78,7 @@ Pick the one that fits your project and have fun!
 ```
 
 ```js
+  const {Bus} = require('ubus');
   let bus = new Bus();
 
   bus.on('my-event', () => {
@@ -97,6 +100,7 @@ Pick the one that fits your project and have fun!
 ```
 
 ```js
+  const {Bus} = require('ubus');
   let bus = new Bus();
 
   bus.on('my-event', () => {
@@ -133,6 +137,7 @@ Pick the one that fits your project and have fun!
 ```
 
 ```js
+  const {Bus} = require('ubus');
   let bus = new Bus();
 
   let _destroyMyEvent = bus.on('my-event', () => {

@@ -1,8 +1,6 @@
 import gulp from 'gulp'
-import tsc from 'gulp-typescript'
 import uglify from 'gulp-uglify'
 import babelUglify from 'gulp-babel-minify'
-import browserify from 'gulp-uglify'
 import babel from 'gulp-babel'
 import rename from 'gulp-rename'
 import {Server as Karma} from 'karma'
@@ -98,8 +96,9 @@ gulp.task('copy-declaration', (done) => {
 
 gulp.task('unit_test', (done) => {
   return new Karma({
-      configFile: __dirname + '/karma.conf.js'
-    }, (exitCode) => done(exitCode)).start()
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: true,
+    }, done()).start()
 })
 
 gulp.task('build', gulp.series(
