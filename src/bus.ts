@@ -20,7 +20,7 @@ export interface Listener {
 }
 
 export interface Destroyer {
-  off(token: string | string[]):void;
+  off(...token:string[]):void;
 }
 
 export class Bus implements Messenger, Listener, Destroyer {
@@ -86,15 +86,7 @@ export class Bus implements Messenger, Listener, Destroyer {
     });
   }
 
-  public off(token: string | string[]):void {
-    if (typeof(token) === "string") {
-        for (let i = 0, len = this._q.length; i < len; i++) {
-          if (this._q[i].token === token) {
-            this._q[i].del = true;
-          }
-        }
-    }
-
+  public off(...token: string[]):void {
     if ((typeof(token) === "object") && !!token.length) {
       (token as string[]).forEach((t) => {
         for (let i = 0, len = this._q.length; i < len; i++) {

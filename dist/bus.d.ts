@@ -7,16 +7,15 @@ export interface Listener {
     once(token: string, cb: Function): void;
 }
 export interface Destroyer {
-    off(token: string | string[]): void;
+    off(...token: string[]): void;
 }
 export declare class Bus implements Messenger, Listener, Destroyer {
     private _q;
     constructor();
     emit(token: string, info?: any): void;
-    on(token: string, cb: Function): destroyFn;
+    on(token: string, cb: (info?: any) => void): destroyFn;
     once(token: string, cb: Function): void;
-    off(token: string | string[]): void;
+    off(...token: string[]): void;
     private _invalidTokenMessage(method);
-    private _s4();
     private _genId();
 }

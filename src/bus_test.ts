@@ -407,40 +407,7 @@ describe('μBus', () => {
       expect(_sub3).toBe(3);
     })
 
-    it('should clean all the given tokens from the queue - array of tokens, still one', () => {
-      let _b = new Bus();
-      let _sub1 = 0;
-      let _sub2 = 0;
-      let _sub3 = 0;
-
-      _b.on('a', (info) => {
-        _sub1 = info;
-      })
-
-      _b.on('a', (info) => {
-        _sub2 = info;
-      })
-
-      _b.on('a', (info) => {
-        _sub3 = info;
-      })
-
-      _b.emit('a', 3);
-
-      expect(_sub1).toBe(3);
-      expect(_sub2).toBe(3);
-      expect(_sub3).toBe(3);
-
-      _b.off(['a']);
-
-      _b.emit('a', 999);
-
-      expect(_sub1).toBe(3);
-      expect(_sub2).toBe(3);
-      expect(_sub3).toBe(3);
-    })
-
-    it('should clean all the given tokens from the queue - array of tokens, more than one', () => {
+    it('should clean all the given tokens from the queue - more than one token', () => {
       let _b = new Bus();
 
       let _suba1 = 0;
@@ -509,7 +476,7 @@ describe('μBus', () => {
       expect(_subc2).toBe(3);
       expect(_subc3).toBe(3);
 
-      _b.off(['a', 'c']);
+      _b.off('a', 'c');
 
       _b.emit('a', 777);
 
