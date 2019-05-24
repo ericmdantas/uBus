@@ -90,7 +90,10 @@ gulp.task('build-amd', (done) => {
 
 gulp.task('copy-declaration', (done) => {
   return gulp.src('build/bus.d.ts')
-             .pipe(gulp.dest('dist'))
+             .pipe(gulp.dest('dist/amd'))
+             .pipe(gulp.dest('dist/es2015'))
+             .pipe(gulp.dest('dist/umd'))
+             .pipe(gulp.dest('dist/systemjs'))
              .on('end', () => done())
 })
 
