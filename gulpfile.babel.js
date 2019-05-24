@@ -89,9 +89,10 @@ gulp.task('build-amd', (done) => {
 })
 
 gulp.task('copy-declaration', (done) => {
-  return gulp.src('build/bus.d.ts')
+  return gulp.src('build/bus.min.d.ts')
              .pipe(gulp.dest('dist/amd'))
              .pipe(gulp.dest('dist/es2015'))
+             .pipe(gulp.dest('dist/commonjs'))
              .pipe(gulp.dest('dist/umd'))
              .pipe(gulp.dest('dist/systemjs'))
              .on('end', () => done())
