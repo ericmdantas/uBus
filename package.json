@@ -37,7 +37,7 @@
   "homepage": "https://github.com/ericmdantas/uBus#readme",
   "devDependencies": {
     "@types/benchmark": "^1.0.29",
-    "@types/jasmine": "^2.2.31",
+    "@types/jasmine": "^3.5.0",
     "@types/jasminewd2": "^2.0.3",
     "babelify": "^7.3.0",
     "benchmark": "^2.1.1",
